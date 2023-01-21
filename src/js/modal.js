@@ -4,6 +4,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.min.css';
 
+ 
 import { cardsList } from './popular';
 
 const modalBackdrop = document.querySelector('.backdrop__modal-film');
@@ -90,4 +91,3 @@ function createMovieCard(obj) {
         </div>
     `;
   modalCardInfo.insertAdjacentHTML('beforeend', markup);
-}

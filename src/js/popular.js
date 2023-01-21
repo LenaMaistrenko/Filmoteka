@@ -15,7 +15,10 @@ async function getPopular() {
 function renderMarkup(movies, genres) {
   const markup = movies
     .map(movie => {
+
       return `<li class="cards__item" data-id="${movie.id}">
+
+     
           <img
             class="cards__photo"
             alt="movie"
