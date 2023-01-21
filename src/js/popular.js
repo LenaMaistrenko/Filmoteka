@@ -11,10 +11,10 @@ async function getPopular() {
   return data.results;
 }
 
-async function renderMarkup(movies) {
+function renderMarkup(movies, genres) {
   const markup = movies
     .map(movie => {
-      return `<li class="cards__item">
+      return `<li class="cards__item data-id="${movie.id}">
           <img
             class="cards__photo"
             alt="movie"
@@ -23,7 +23,9 @@ async function renderMarkup(movies) {
             loading="lazy"
           />
           <h3 class="cards__title">${movie.title}</h3>
-          <p class="cards__info">${movie.genre_ids} | ${movie.release_date}</p>
+          <p class="cards__info">${getGenresName(genres, movie.genre_ids).join(
+            ', '
+          )} | ${movie.release_date.split('-')[0]}</p>
         </li>`;
     })
     .join('');
@@ -33,8 +35,27 @@ async function renderMarkup(movies) {
 async function loadPopular() {
   try {
     const popularMovies = await getPopular();
-    renderMarkup(popularMovies);
+    const genres = await getGenres();
+    renderMarkup(popularMovies, genres);
   } catch (error) {
     console.log(error);
   }
+}
+
+async function getGenres() {
+  const { data } = await axios.get(
+    'https://api.themoviedb.org/3/genre/movie/list?api_key=004aa31770cc2729c6dd319813b8b5dc'
+  );
+  console.log(data);
+  return data.genres;
+}
+
+function getGenresName(allGenres, genreIds) {
+  const genresName = allGenres.reduce((acc, genre) => {
+    if (genreIds.includes(genre.id)) {
+      return [...acc, genre.name];
+    }
+    return acc;
+  }, []);
+  return genresName.length > 2 ? genresName.slice(0, 2) : genresName;
 }
