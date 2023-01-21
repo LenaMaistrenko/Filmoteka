@@ -1,7 +1,8 @@
 import axios from 'axios';
 
-const cardsList = document.querySelector('.cards__list');
+export const cardsList = document.querySelector('.cards__list');
 loadPopular();
+// console.log(cardsList);
 
 async function getPopular() {
   const { data } = await axios.get(
@@ -14,7 +15,10 @@ async function getPopular() {
 function renderMarkup(movies, genres) {
   const markup = movies
     .map(movie => {
-      return `<li class="cards__item data-id="${movie.id}">
+
+      return `<li class="cards__item" data-id="${movie.id}">
+
+     
           <img
             class="cards__photo"
             alt="movie"
