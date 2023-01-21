@@ -12,10 +12,9 @@ async function getPopular() {
   return data.results;
 }
 
-function renderMarkup(movies, genres) {
+export function renderMarkup(movies, genres) {
   const markup = movies
     .map(movie => {
-
       return `<li class="cards__item" data-id="${movie.id}">
 
      
@@ -46,15 +45,16 @@ async function loadPopular() {
   }
 }
 
-async function getGenres() {
+export async function getGenres() {
   const { data } = await axios.get(
     'https://api.themoviedb.org/3/genre/movie/list?api_key=004aa31770cc2729c6dd319813b8b5dc'
   );
   console.log(data);
+  console.log(data.genres);
   return data.genres;
 }
 
-function getGenresName(allGenres, genreIds) {
+export function getGenresName(allGenres, genreIds) {
   const genresName = allGenres.reduce((acc, genre) => {
     if (genreIds.includes(genre.id)) {
       return [...acc, genre.name];
