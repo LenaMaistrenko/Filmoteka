@@ -2,7 +2,8 @@ import axios from 'axios';
 
 export const cardsList = document.querySelector('.cards__list');
 loadPopular();
-// console.log(cardsList);
+
+let GENRES = [];
 
 async function getPopular() {
   const { data } = await axios.get(
@@ -12,7 +13,7 @@ async function getPopular() {
   return data.results;
 }
 
-export function renderMarkup(movies, genres) {
+export function renderMarkup(movies) {
   const markup = movies
     .map(movie => {
       return `<li class="cards__item" data-id="${movie.id}">
@@ -26,7 +27,7 @@ export function renderMarkup(movies, genres) {
             loading="lazy"
           />
           <h3 class="cards__title">${movie.title}</h3>
-          <p class="cards__info">${getGenresName(genres, movie.genre_ids).join(
+          <p class="cards__info">${getGenresName(GENRES, movie.genre_ids).join(
             ', '
           )} | ${movie.release_date.split('-')[0]}</p>
         </li>`;
@@ -38,8 +39,8 @@ export function renderMarkup(movies, genres) {
 async function loadPopular() {
   try {
     const popularMovies = await getPopular();
-    const genres = await getGenres();
-    renderMarkup(popularMovies, genres);
+    GENRES = await getGenres();
+    renderMarkup(popularMovies);
   } catch (error) {
     console.log(error);
   }
@@ -49,8 +50,6 @@ export async function getGenres() {
   const { data } = await axios.get(
     'https://api.themoviedb.org/3/genre/movie/list?api_key=004aa31770cc2729c6dd319813b8b5dc'
   );
-  console.log(data);
-  console.log(data.genres);
   return data.genres;
 }
 
