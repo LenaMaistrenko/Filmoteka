@@ -35,8 +35,7 @@ function searchFilm(event) {
       }
       if (Array.isArray(result) && result.length) {
         // console.log(result.ganres);
-        const genres = getGenres();
-        renderMarkup(result, []);
+        renderMarkup(result);
         //  renderMarkup(result, result.ganres);
       } else {
         notification.classList.remove('close');
