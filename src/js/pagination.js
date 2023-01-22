@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { getPopular } from './popular.js';
 console.log(getPopular);
-const totalPage = getPopular().data.results;
-console.log(totalPage);
+// const totalPage = getPopular().data.results;
+// console.log(totalPage);
 
 // функционал кнопок пагинации
 
@@ -13,21 +13,27 @@ const btn4Ref = document.querySelector('[data-index="4"]');
 const btn5Ref = document.querySelector('[data-index="5"]');
 const firstPageRef = document.querySelector('.firstPage');
 const lastPageRef = document.querySelector('.lastPage');
-const paginationRef = document.querySelector('.pagination-container');
+const containerRef = document.querySelector('.pagination-container');
+
 const leftArrowRef = document.querySelector('.arrow-left');
 const rightArrowRef = document.querySelector('.arrow-right');
 const leftDotsRef = document.querySelector('.dotsLeft');
 const rightDotsRef = document.querySelector('.dotsRight');
 
-paginationRef.addEventListner('submit', onPaginationClick);
-
 let currentPage = 1;
+// totalPage надо получить из запроса на сервер!!!!!!!
+let totalPage = 1000;
+
+lastPageRef.textContent = totalPage;
+
+containerRef.addEventListener ('click', onPaginationClick);
 
 let allBtnPagination = document.querySelectorAll('.pagination__item');
 
-leftDotsRef.hidden = true;
-leftArrowRef.hidden = true;
-firstPageRef.hidden = true;
+leftDotsRef.disabled = true;
+console.log(leftDotsRef.disabled);
+leftArrowRef.disabled = true;
+firstPageRef.disabled = true;
 
 function onPaginationClick (event) {
   if (event.target.tagName === "BUTTON") {
@@ -35,15 +41,15 @@ function onPaginationClick (event) {
       currentPage = Number(event.target.textContent);
     }
 
-    leftDotsRef.hidden = true;
-    rightDotsRef.hidden = true;
+    leftDotsRef.disabled = true;
+    rightDotsRef.disabled = true;
 
     if (event.target.classList.contains('pagination__item')) {
       allBtnPagination.forEach(e => e.classList.remove('pagination__item--active'));
       event.target.classList.add('pagination__item--active');
     }
 
-    if (event.target.classList.contains('arrow-right') && currentPage , 1000) {
+    if (event.target.classList.contains('arrow-right') && currentPage < totalPage) {
       allBtnPagination.forEach(e => e.classList.remove('pagination__item--active'));
       btn1Ref.classList.add('pagination__item--active');
       btn1Ref.textContent = Number(btn1Ref.textContent) + 5;
@@ -52,9 +58,10 @@ function onPaginationClick (event) {
       btn4Ref.textContent = Number(btn4Ref.textContent) + 5;
       btn5Ref.textContent = Number(btn5Ref.textContent) + 5;
       currentPage = Number(btn1Ref.textContent);
+      console.log(currentPage);
     }
 
-    if (event.target.classList.contains('arrow-right') && currentPage >= 5) {
+    if (event.target.classList.contains('arrow-left') && currentPage >= 5) {
       allBtnPagination.forEach(e => e.classList.remove('pagination__item--active'));
       btn1Ref.textContent = Number(btn1Ref.textContent) - 5;
       btn2Ref.textContent = Number(btn2Ref.textContent) - 5;
@@ -63,6 +70,7 @@ function onPaginationClick (event) {
       btn5Ref.textContent = Number(btn5Ref.textContent) - 5;
       btn5Ref.classList.add('pagination__item--active');
       currentPage = Number(btn5Ref.textContent);
+      console.log(currentPage);
     }
 
     if (event.target.classList.contains('firstPage')) {
@@ -74,9 +82,9 @@ function onPaginationClick (event) {
       btn5Ref.textContent = 5;
       btn1Ref.classList.add('pagination__item--active');
       currentPage = Number(btn1Ref.textContent);
-      leftArrowRef.hidden = true;
-      leftDotsRef.hidden = true;
-      firstPageRef.hidden = true;
+      leftArrowRef.disabled = true;
+      leftDotsRef.disabled = true;
+      firstPageRef.disabled = true;
     }
 
     if (event.target.classList.contains('lastPage')) {
@@ -88,28 +96,28 @@ function onPaginationClick (event) {
       btn5Ref.textContent = lastPageRef.textContent;
       btn5Ref.classList.add('pagination__item--active');
       currentPage = Number(btn5Ref.textContent);
-      rightArrowRef.hidden = true;
-      rightDotsRef.hidden = true;
-      lastPageRef.hidden = true;
+      rightArrowRef.disabled = true;
+      rightDotsRef.disabled = true;
+      lastPageRef.disabled = true;
     }
 
     if (currentPage > 5) {
-      leftArrowRef.hidden = false;
-      leftDotsRef.hidden = false;
-      firstPageRef.hidden = false;
+      leftArrowRef.disabled = false;
+      leftDotsRef.disabled = false;
+      firstPageRef.disabled = false;
     } else {
-      leftArrowRef.hidden = true;
-      leftDotsRef.hidden = true;
-      firstPageRef.hidde = true;
+      leftArrowRef.disabled = true;
+      leftDotsRef.disabled = true;
+      firstPageRef.disabled = true;
     }
 
-    if (currentPage < 996) {
-      rightArrowRef.hidden = false;
-      rightDotsRef.hidden = false;
-      lastPageRef.hidden = false;
+    if (currentPage < (totalPage-4)) {
+      rightArrowRef.disabled = false;
+      rightDotsRef.disabled = false;
+      lastPageRef.disabled = false;
     }
 
-    getPopular(currentPage).then(data => console.log(data));
+    // getPopular(currentPage).then(data => console.log(data));
   }
 }
 
