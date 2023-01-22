@@ -89,18 +89,36 @@ function createMovieCard(obj) {
   const genresArr = genres.map(el => el.name);
 
   const markup = ` 
-        <div class="film-card"> 
-            <img class="film-card__picture" src="https://image.tmdb.org/t/p/w300${poster_path}" alt="${title}" data-id="${id}"> 
+      <div class="film-card"> 
+          <div class="film-card__picture-container">
+              <img class="film-card__picture" src="https://image.tmdb.org/t/p/w300${poster_path}" alt="${title}" data-id="${id}"> 
+          </div>
             <h2 class="film-card__title">${title}</h2> 
-            <div class="film-card__general-info"> 
-                <p class="info-item">Vote/Votes<span>${vote_average}/${vote_count}</span></p> 
-                <p class="info-item">Popularity<span>${popularity}</span></p> 
-                <p class="info-item">Original Title<span>${original_title}</span></p> 
-                <p class="info-item">Genre<span>${[...genresArr]}</span></p> 
-            </div> 
-            <p class="film-card__overview-title">About</p> 
+            <ul class="film-card__info-list">
+              <li class="film-card__info-el">
+                  <p class="film-card__info-item">Vote / Votes</p>
+                  <p class="film-card__info-item--value">
+                    <span class="info-item__highlight-orange">${vote_average.toFixed(1)}</span> / 
+                    <span class="info-item__highlight-grey">${vote_count.toFixed()}</span>
+                  </p>
+              </li>
+              <li class="film-card__info-el">
+                <p class="film-card__info-item">Popularity</p>
+                <p class="film-card__info-item--value">${popularity.toFixed(1)}</p>
+              </li>
+              <li class="film-card__info-el">
+                <p class="film-card__info-item">Original Title</p>
+                <p class="film-card__info-item--value">${original_title.toUpperCase()}</p>
+              </li>
+              <li class="film-card__info-el">
+              <p class="film-card__info-item">Genre</p>
+              <p class="film-card__info-item--value">${[...genresArr].join(', ')}</p>
+              </li>
+            </ul>
+            <p class="film-card__overview-title">About</p>
             <p class="film-card__overview">${overview}</p> 
-        </div> 
+        </div>
+       
     `;
   modalCardInfo.insertAdjacentHTML('beforeend', markup);
 }
