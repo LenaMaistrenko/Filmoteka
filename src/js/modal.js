@@ -139,6 +139,7 @@ async function setToLocalStorageWatched(evt) {
 
   if (libraryWatched.some(movie => movie.id === Number(idWatched))){
     Notify.warning('This film have already add to watched list');
+    
     return;
   } 
   const currentFilm = await addMovieInfo(idWatched);
