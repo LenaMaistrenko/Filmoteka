@@ -8,3 +8,4 @@ import './js/trailer';
 
 import './js/search.js';
 import './js/pagination.js';
+import './js/sroll-up';
