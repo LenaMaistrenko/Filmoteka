@@ -20,7 +20,6 @@ if (window.location.pathname === '/library.html') {
 }
 
 function renderWatched() {
-  console.log('asda');
   Loading.standard();
   Loading.remove(800);
   cardsList.innerHTML = '';
