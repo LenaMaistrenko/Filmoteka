@@ -2,22 +2,31 @@ import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.min.css';
-import { cardsList, getGenres, getGenresName } from './popular';
+// import { cardsList, getGenres, getGenresName } from './popular';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
+const cardsList = document.querySelector('.cards__list');
 const watchedBtn = document.querySelector('.filter-watched__btn');
 const queueBtn = document.querySelector('.filter-queue__btn');
+const noMovies = document.querySelector('.no-movies');
 
 watchedBtn.addEventListener('click', renderWatched);
 queueBtn.addEventListener('click', renderQueue);
+noMovies.classList.add('is-hidden');
+
+if (window.location.pathname === '/library.html') {
+  watchedBtn.focus();
+  watchedBtn.click();
+}
 
 function renderWatched() {
+  console.log('asda');
   Loading.standard();
   Loading.remove(800);
   cardsList.innerHTML = '';
   const watchedMovies = JSON.parse(localStorage.getItem('watched')) || [];
   if (!watchedMovies.length) {
-    return Notify.warning('There is no added movie');
+    return renderNoMovies();
   }
   renderMarkupLibrary(watchedMovies);
 }
@@ -28,9 +37,13 @@ function renderQueue() {
   cardsList.innerHTML = '';
   const queueMovies = JSON.parse(localStorage.getItem('queue')) || [];
   if (!queueMovies.length) {
-    return Notify.warning('There is no added movie');
+    return renderNoMovies();
   }
   renderMarkupLibrary(queueMovies);
+}
+
+function renderNoMovies() {
+  noMovies.classList.remove('is-hidden');
 }
 
 function renderMarkupLibrary(movies) {
