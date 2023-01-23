@@ -58,12 +58,19 @@
     }
     
     .icon {
-    fill: currentColor;
+    // fill: currentColor;
+    stroke: currentColor;
     }
     
   .pagination__item--active {
     border-radius: 5px;
     background-color: var(--color-accent);
     color: var(--header-text-color);
+  }
+  .hidden { 
+    opacity: 0; 
+    visibility: hidden; 
+    pointer-events: none; 
+    display: none; 
   }
 

@@ -22,46 +22,76 @@ let currentPage = 1;
 
 // totalPages надо получить из {getPopular} + {searchFilm} запроса на сервер!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-let totalPages = 1000;
+let totalPages = 100;
 
 lastPageRef.textContent = totalPages;
 
-containerRef.addEventListener ('click', onPaginationClick);
+containerRef.addEventListener('click', onPaginationClick);
 
+if (window.innerWidth <= 768) {
+  leftDotsRef.remove();
+  leftArrowRef.classList.add('hidden');
+  firstPageRef.remove();
+  rightDotsRef.remove();
+  rightArrowRef.classList.add('hidden');
+  lastPageRef.remove();
+}
+if (window.innerWidth > 768) {
+  leftDotsRef.classList.add('hidden');
+  leftArrowRef.classList.add('hidden');
+  firstPageRef.classList.add('hidden');
+}
 
-
-leftDotsRef.disabled = true;;
-leftArrowRef.disabled = true;
-firstPageRef.disabled = true;
-
-function onPaginationClick (event) {
+function onPaginationClick(event) {
   if (event.target.classList.contains('pagination-btn')) {
     console.log(event.target.tagName);
     if (Number(event.target.textContent)) {
+      console.log(currentPage);
       currentPage = Number(event.target.textContent);
       console.log(currentPage);
+      console.log(event.target.tagName);
     }
     // additional if
-    if(currentPage < 5 && window.innerWidth < 768) {
-      leftDotsRef.disabled = true;
-      leftArrowRef.disabled = true;
-      firstPageRef.disabled = true;
-    }
-    if(currentPage > totalPages && window.innerWidth < 768) {
-      rightDotsRef.disabled = true;
-      rightArrowRef.disabled = true;
-      lastPageRef.disabled = true;
-    }
-    leftDotsRef.disabled = true;
-    rightDotsRef.disabled = true;
+    // if(currentPage < 5) {
+    //   console.log(currentPage);
+    //   // leftDotsRef.classList.add("hidden");
+    //   // leftArrowRef.classList.add("hidden");
+    //   // firstPageRef.classList.add("hidden");
+    //   console.log(currentPage);
+    //   console.log(event.target.tagName);
+    // }
+    // if(currentPage > totalPages-5) {
+    //   console.log(currentPage);
+    //   // rightDotsRef.classList.add("hidden");
+    //   // rightArrowRef.classList.add("hidden");
+    //   // lastPageRef.classList.add("hidden");
+    //   console.log(currentPage);
+    //   console.log(event.target.tagName);
+    // }
+    //   console.log(currentPage);
+    //   // leftDotsRef.classList.add("hidden");
+    //   // rightDotsRef.classList.add("hidden");
+    //   console.log(currentPage);
+    //   console.log(event.target.tagName);
 
     if (event.target.classList.contains('pagination__item')) {
-      allBtnPagination.forEach(e => e.classList.remove('pagination__item--active'));
+      console.log(currentPage);
+      allBtnPagination.forEach(e =>
+        e.classList.remove('pagination__item--active')
+      );
       event.target.classList.add('pagination__item--active');
+      console.log(currentPage);
+      console.log(event.target.tagName);
     }
 
-    if (event.target.classList.contains('arrow-right') && currentPage < totalPages-5) {
-      allBtnPagination.forEach(e => e.classList.remove('pagination__item--active'));
+    if (
+      event.target.classList.contains('arrow-right') &&
+      currentPage < totalPages - 5
+    ) {
+      console.log(currentPage);
+      allBtnPagination.forEach(e =>
+        e.classList.remove('pagination__item--active')
+      );
       btn1Ref.classList.add('pagination__item--active');
       btn1Ref.textContent = Number(btn1Ref.textContent) + 5;
       btn2Ref.textContent = Number(btn2Ref.textContent) + 5;
@@ -70,11 +100,14 @@ function onPaginationClick (event) {
       btn5Ref.textContent = Number(btn5Ref.textContent) + 5;
       currentPage = Number(btn1Ref.textContent);
       console.log(currentPage);
-      return;
+      console.log(event.target.tagName);
     }
 
     if (event.target.classList.contains('arrow-left') && currentPage > 5) {
-      allBtnPagination.forEach(e => e.classList.remove('pagination__item--active'));
+      console.log(currentPage);
+      allBtnPagination.forEach(e =>
+        e.classList.remove('pagination__item--active')
+      );
       btn1Ref.textContent = Number(btn1Ref.textContent) - 5;
       btn2Ref.textContent = Number(btn2Ref.textContent) - 5;
       btn3Ref.textContent = Number(btn3Ref.textContent) - 5;
@@ -83,11 +116,14 @@ function onPaginationClick (event) {
       btn5Ref.classList.add('pagination__item--active');
       currentPage = Number(btn5Ref.textContent);
       console.log(currentPage);
+      console.log(event.target.tagName);
     }
 
-
     if (event.target.classList.contains('firstPage')) {
-      allBtnPagination.forEach(e => e.classList.remove('pagination__item--active'));
+      console.log(currentPage);
+      allBtnPagination.forEach(e =>
+        e.classList.remove('pagination__item--active')
+      );
       btn1Ref.textContent = 1;
       btn2Ref.textContent = 2;
       btn3Ref.textContent = 3;
@@ -95,13 +131,18 @@ function onPaginationClick (event) {
       btn5Ref.textContent = 5;
       btn1Ref.classList.add('pagination__item--active');
       currentPage = btn1Ref.textContent;
-      leftArrowRef.disabled = true;
-      leftDotsRef.disabled = true;
-      firstPageRef.disabled = true;
+      // leftArrowRef.classList.add("hidden");
+      // leftDotsRef.classList.add("hidden");
+      // firstPageRef.classList.add("hidden");
+      console.log(currentPage);
+      console.log(event.target.tagName);
     }
 
     if (event.target.classList.contains('lastPage')) {
-      allBtnPagination.forEach(e => e.classList.remove('pagination__item--active'));
+      console.log(currentPage);
+      allBtnPagination.forEach(e =>
+        e.classList.remove('pagination__item--active')
+      );
       btn1Ref.textContent = Number(btn1Ref.textContent) - 4;
       btn2Ref.textContent = Number(btn2Ref.textContent) - 3;
       btn3Ref.textContent = Number(btn3Ref.textContent) - 2;
@@ -109,38 +150,66 @@ function onPaginationClick (event) {
       btn5Ref.textContent = lastPageRef.textContent;
       btn5Ref.classList.add('pagination__item--active');
       currentPage = btn5Ref.textContent;
-      rightArrowRef.disabled = true;
-      rightDotsRef.disabled = true;
-      lastPageRef.disabled = true;
+      // rightArrowRef.classList.add("hidden");
+      // rightDotsRef.classList.add("hidden");
+      // lastPageRef.classList.add("hidden");
+      console.log(currentPage);
+      console.log(event.target.tagName);
     }
 
     if (Number(event.target.textContent) === totalPages) {
-      allBtnPagination.forEach(e => e.classList.remove('pagination__item--active'));
+      console.log(currentPage);
+      allBtnPagination.forEach(e => e.classList.remove('pagination__item--active')
+      );
       btn1Ref.textContent = totalPages - 4;
       btn2Ref.textContent = totalPages - 3;
       btn3Ref.textContent = totalPages - 2;
       btn4Ref.textContent = totalPages - 1;
       btn5Ref.textContent = totalPages;
-      btn5Ref.classList.add('pagination__item--active')
+      btn5Ref.classList.add('pagination__item--active');
+      console.log(currentPage);
+      console.log(event.target.tagName);
+    }
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    if (currentPage <= 5) {
+      console.log(currentPage);
+        leftDotsRef.classList.remove('hidden');
+        leftArrowRef.classList.remove('hidden');
+        firstPageRef.classList.remove('hidden');
+        leftArrowRef.classList.add('hidden');
+        leftDotsRef.classList.add('hidden');
+        firstPageRef.classList.add('hidden');
+        rightArrowRef.classList.remove('hidden');
+        rightDotsRef.classList.remove('hidden');
+        lastPageRef.classList.remove('hidden');
+      console.log(currentPage);
+      console.log(event.target.tagName);
     }
 
-    if (Number(currentPage) > 5) {
-      leftArrowRef.disabled = false;
-      leftDotsRef.disabled = false;
-      firstPageRef.disabled = false;
-    } else {
-      leftArrowRef.disabled = true;
-      leftDotsRef.disabled = true;
-      firstPageRef.disabled = true;
+    if (currentPage > 5) {
+      console.log(currentPage);
+      leftArrowRef.classList.remove('hidden');
+      leftDotsRef.classList.remove('hidden');
+      firstPageRef.classList.remove('hidden');
+      rightArrowRef.classList.remove('hidden');
+      rightDotsRef.classList.remove('hidden');
+      lastPageRef.classList.remove('hidden');
+      console.log(currentPage);
+      console.log(event.target.tagName);
     }
 
-    if (Number(currentPage) < (totalPages - 4)) {
-      rightArrowRef.disabled = false;
-      rightDotsRef.disabled = false;
-      lastPageRef.disabled = false;
+    if (currentPage >= totalPages - 5) {
+      console.log(currentPage);
+      rightArrowRef.classList.remove('hidden');
+      rightDotsRef.classList.remove('hidden');
+      lastPageRef.classList.remove('hidden');
+      rightArrowRef.classList.add('hidden');
+      rightDotsRef.classList.add('hidden');
+      lastPageRef.classList.add('hidden');
+      console.log(currentPage);
+      console.log(event.target.tagName);
     }
 
     // getPopular(currentPage).then(data => console.log(data));
   }
 }
-
