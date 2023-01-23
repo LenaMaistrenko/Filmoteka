@@ -31,9 +31,9 @@ async function searchFilm(event) {
     const { results, page, total_pages } = await getByName(searched.trim(), 1);
     console.log('results, page, total_pages ', results, page, total_pages);
     const cardsList = document.querySelector('.cards__list');
-    if (cardsList) {
-      cardsList.innerHTML = '';
-    }
+    // if (cardsList) {
+    //   cardsList.innerHTML = '';
+    // }
     if (Array.isArray(results) && results.length) {
       renderMarkup(results);
       pagination(1, total_pages);
