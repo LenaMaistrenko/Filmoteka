@@ -1,18 +1,19 @@
 import axios from 'axios';
+import { pagination } from './pagination.js';
 
 export const cardsList = document.querySelector('.cards__list');
+let TOTAL_PAGES = 0;
+let page = 1;
 loadPopular();
 
 let GENRES = [];
 
-
-export async function getPopular() {
-
+export async function getPopular(page = 1) {
   const { data } = await axios.get(
-    `https://api.themoviedb.org/3/trending/movie/week?api_key=004aa31770cc2729c6dd319813b8b5dc`
+    `https://api.themoviedb.org/3/trending/movie/week?api_key=004aa31770cc2729c6dd319813b8b5dc&page=${page}`
   );
-  console.log(data);
-  return data.results;
+  console.log('getPopular', data);
+  return data;
 }
 
 export function renderMarkup(movies) {
@@ -41,9 +42,11 @@ export function renderMarkup(movies) {
 
 async function loadPopular() {
   try {
-    const popularMovies = await getPopular();
+    const { results, page, total_pages } = await getPopular();
+    console.log(' data, pages, total_pages', results, page, total_pages);
     GENRES = await getGenres();
-    renderMarkup(popularMovies);
+    renderMarkup(results);
+    pagination(1, total_pages);
   } catch (error) {
     console.log(error);
   }

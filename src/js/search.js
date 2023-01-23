@@ -1,11 +1,10 @@
 import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
-import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.min.css';
+
 import { renderMarkup } from './popular';
-import { getGenresName } from './popular';
-import { getGenres } from './popular';
+
+import { pagination } from './pagination.js';
 
 const searchForm = document.querySelector('.form');
 const searchInput = document.querySelector('#search');
@@ -17,7 +16,7 @@ searchInput.addEventListener('keyup', event => {
 
 searchForm.addEventListener('submit', searchFilm);
 
-function searchFilm(event) {
+async function searchFilm(event) {
   event.preventDefault();
   Loading.standard();
   Loading.remove(800);
@@ -31,19 +30,18 @@ function searchFilm(event) {
     return;
   }
   try {
-    const resultByName = getByName(search.value.trim()).then(result => {
-      const cardsList = document.querySelector('.cards__list');
-      if (cardsList) {
-        cardsList.innerHTML = '';
-      }
-      if (Array.isArray(result) && result.length) {
-        // console.log(result.ganres);
-        renderMarkup(result);
-        //  renderMarkup(result, result.ganres);
-      } else {
-        notification.classList.remove('close');
-      }
-    });
+    const { results, page, total_pages } = await getByName(search.value.trim());
+    console.log('results, page, total_pages ', results, page, total_pages);
+    const cardsList = document.querySelector('.cards__list');
+    if (cardsList) {
+      cardsList.innerHTML = '';
+    }
+    if (Array.isArray(results) && results.length) {
+      renderMarkup(results);
+      pagination(1, total_pages);
+    } else {
+      notification.classList.remove('close');
+    }
   } catch (error) {
     console.log(error);
   }
@@ -52,7 +50,7 @@ async function getByName(name) {
   const { data } = await axios.get(
     `https://api.themoviedb.org/3/search/movie?api_key=004aa31770cc2729c6dd319813b8b5dc&query=${name}`
   );
-  console.log(data);
-  console.log(data.results);
-  return data.results;
+  console.log('getByName', data);
+
+  return data;
 }
