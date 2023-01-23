@@ -27,6 +27,9 @@ async function onOpenModal(event) {
   if (!event.target.closest('[data-id]')) {
     return;
   }
+  modalBackdrop.classList.add('is-hidden');
+  modalCardInfo.innerHTML = '';
+  clearBackdropListeners();
 
   const currentCardId = event.target.closest('li').dataset.id;
   const movieRes = await addMovieInfo(currentCardId);
