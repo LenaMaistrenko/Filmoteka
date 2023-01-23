@@ -4,7 +4,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.min.css';
 
-import { cardsList } from './popular';
+const cardsList = document.querySelector('.cards__list');
 
 const modalBackdrop = document.querySelector('.backdrop__modal-film');
 const buttonCloseModal = document.querySelector('#modal-close-button');
@@ -139,11 +139,11 @@ async function setToLocalStorageWatched(evt) {
     evt.currentTarget.parentNode.previousElementSibling.firstElementChild
       .firstElementChild.firstElementChild.dataset.id;
 
-  if (libraryWatched.some(movie => movie.id === Number(idWatched))){
+  if (libraryWatched.some(movie => movie.id === Number(idWatched))) {
     Notify.warning('This film have already add to watched list');
-    
+
     return;
-  } 
+  }
   const currentFilm = await addMovieInfo(idWatched);
 
   libraryWatched.push(currentFilm);
@@ -162,10 +162,10 @@ async function setToLocalStorageQueue(evt) {
     evt.currentTarget.parentNode.previousElementSibling.firstElementChild
       .firstElementChild.firstElementChild.dataset.id;
 
-  if (libraryQueue.some(movie => movie.id === Number(idQueue))){
+  if (libraryQueue.some(movie => movie.id === Number(idQueue))) {
     Notify.warning('This film have already add to queue list');
     return;
-  } 
+  }
   const currentFilm = await addMovieInfo(idQueue);
 
   libraryQueue.push(currentFilm);

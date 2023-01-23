@@ -4,7 +4,9 @@ import { pagination } from './pagination.js';
 export const cardsList = document.querySelector('.cards__list');
 let TOTAL_PAGES = 0;
 let page = 1;
-loadPopular();
+if (window.location.pathname === '/index.html') {
+  loadPopular();
+}
 
 let GENRES = [];
 
