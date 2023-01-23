@@ -5,15 +5,18 @@ loadPopular();
 
 let GENRES = [];
 
-async function getPopular() {
+
+export async function getPopular() {
+
   const { data } = await axios.get(
-    'https://api.themoviedb.org/3/trending/movie/week?api_key=004aa31770cc2729c6dd319813b8b5dc'
+    `https://api.themoviedb.org/3/trending/movie/week?api_key=004aa31770cc2729c6dd319813b8b5dc`
   );
   console.log(data);
   return data.results;
 }
 
 export function renderMarkup(movies) {
+  cardsList.innerHTML = '';
   const markup = movies
     .map(movie => {
       return `<li class="cards__item" data-id="${movie.id}">
