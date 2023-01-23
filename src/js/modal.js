@@ -137,7 +137,11 @@ async function setToLocalStorageWatched(evt) {
     evt.currentTarget.parentNode.previousElementSibling.firstElementChild
       .firstElementChild.firstElementChild.dataset.id;
 
-  if (libraryWatched.some(movie => movie.id === Number(idWatched))) return;
+  if (libraryWatched.some(movie => movie.id === Number(idWatched))){
+    Notify.warning('This film have already add to watched list');
+    
+    return;
+  } 
   const currentFilm = await addMovieInfo(idWatched);
 
   libraryWatched.push(currentFilm);
@@ -156,7 +160,10 @@ async function setToLocalStorageQueue(evt) {
     evt.currentTarget.parentNode.previousElementSibling.firstElementChild
       .firstElementChild.firstElementChild.dataset.id;
 
-  if (libraryQueue.some(movie => movie.id === Number(idQueue))) return;
+  if (libraryQueue.some(movie => movie.id === Number(idQueue))){
+    Notify.warning('This film have already add to queue list');
+    return;
+  } 
   const currentFilm = await addMovieInfo(idQueue);
 
   libraryQueue.push(currentFilm);
