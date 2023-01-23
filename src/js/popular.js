@@ -5,7 +5,7 @@ loadPopular();
 
 let GENRES = [];
 
-export async function getPopular(page=1) {
+export async function getPopular(page = 1) {
   const { data } = await axios.get(
     `https://api.themoviedb.org/3/trending/movie/week?api_key=004aa31770cc2729c6dd319813b8b5dc&page=${page}`
   );
@@ -14,6 +14,7 @@ export async function getPopular(page=1) {
 }
 
 export function renderMarkup(movies) {
+  cardsList.innerHTML = '';
   const markup = movies
     .map(movie => {
       return `<li class="cards__item" data-id="${movie.id}">

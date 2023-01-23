@@ -98,13 +98,17 @@ function createMovieCard(obj) {
               <li class="film-card__info-el">
                   <p class="film-card__info-item">Vote / Votes</p>
                   <p class="film-card__info-item--value">
-                    <span class="info-item__highlight-orange">${vote_average.toFixed(1)}</span> / 
+                    <span class="info-item__highlight-orange">${vote_average.toFixed(
+                      1
+                    )}</span> / 
                     <span class="info-item__highlight-grey">${vote_count.toFixed()}</span>
                   </p>
               </li>
               <li class="film-card__info-el">
                 <p class="film-card__info-item">Popularity</p>
-                <p class="film-card__info-item--value">${popularity.toFixed(1)}</p>
+                <p class="film-card__info-item--value">${popularity.toFixed(
+                  1
+                )}</p>
               </li>
               <li class="film-card__info-el">
                 <p class="film-card__info-item">Original Title</p>
@@ -112,7 +116,9 @@ function createMovieCard(obj) {
               </li>
               <li class="film-card__info-el">
               <p class="film-card__info-item">Genre</p>
-              <p class="film-card__info-item--value">${[...genresArr].join(', ')}</p>
+              <p class="film-card__info-item--value">${[...genresArr].join(
+                ', '
+              )}</p>
               </li>
             </ul>
             <p class="film-card__overview-title">About</p>
@@ -126,7 +132,7 @@ function createMovieCard(obj) {
 async function setToLocalStorageWatched(evt) {
   const idWatched =
     evt.currentTarget.parentNode.previousElementSibling.firstElementChild
-      .firstElementChild.dataset.id;
+      .firstElementChild.firstElementChild.dataset.id;
 
   if (libraryWatched.some(movie => movie.id === Number(idWatched))) return;
   const currentFilm = await addMovieInfo(idWatched);
@@ -145,7 +151,8 @@ async function setToLocalStorageWatched(evt) {
 async function setToLocalStorageQueue(evt) {
   const idQueue =
     evt.currentTarget.parentNode.previousElementSibling.firstElementChild
-      .firstElementChild.dataset.id;
+      .firstElementChild.firstElementChild.dataset.id;
+
   if (libraryQueue.some(movie => movie.id === Number(idQueue))) return;
   const currentFilm = await addMovieInfo(idQueue);
 
