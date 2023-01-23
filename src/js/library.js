@@ -3,6 +3,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.min.css';
 import { cardsList, getGenres, getGenresName } from './popular';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 const watchedBtn = document.querySelector('.filter-watched__btn');
 const queueBtn = document.querySelector('.filter-queue__btn');
@@ -11,6 +12,8 @@ watchedBtn.addEventListener('click', renderWatched);
 queueBtn.addEventListener('click', renderQueue);
 
 function renderWatched() {
+  Loading.standard();
+  Loading.remove(800);
   cardsList.innerHTML = '';
   const watchedMovies = JSON.parse(localStorage.getItem('watched')) || [];
   if (!watchedMovies.length) {
@@ -20,6 +23,8 @@ function renderWatched() {
 }
 
 function renderQueue() {
+  Loading.standard();
+  Loading.remove(800);
   cardsList.innerHTML = '';
   const queueMovies = JSON.parse(localStorage.getItem('queue')) || [];
   if (!queueMovies.length) {

@@ -105,7 +105,8 @@ background-image: linear-gradient(to right,
   margin-right: auto;
   margin-bottom: 15px;
   max-width: 350px;
-
+  transition: all 0.8s ease 0.8s;
+  
   @include desktop {
     max-width: 500px;
   }
@@ -126,6 +127,7 @@ background-image: linear-gradient(to right,
   outline: none;
   border: none;
   border-bottom: solid 1px #f2f2f2;
+  
 }
 
 .form__btn {

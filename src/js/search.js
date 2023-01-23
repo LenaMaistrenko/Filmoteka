@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.min.css';
 import { renderMarkup } from './popular';
@@ -18,6 +19,8 @@ searchForm.addEventListener('submit', searchFilm);
 
 function searchFilm(event) {
   event.preventDefault();
+  Loading.standard();
+  Loading.remove(800);
   const {
     elements: { search },
   } = event.currentTarget;
