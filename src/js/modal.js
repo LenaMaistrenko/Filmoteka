@@ -151,6 +151,7 @@ async function setToLocalStorageWatched(evt) {
   try {
     const valueToSet = JSON.stringify(libraryWatched);
     localStorage.setItem('watched', valueToSet);
+    Notify.success(`${currentFilm.title} added to WATCHED!`);
   } catch (error) {
     console.error('Set state error: ', error.message);
   }
@@ -167,12 +168,12 @@ async function setToLocalStorageQueue(evt) {
     return;
   }
   const currentFilm = await addMovieInfo(idQueue);
-
   libraryQueue.push(currentFilm);
 
   try {
     const valueToSet = JSON.stringify(libraryQueue);
     localStorage.setItem('queue', valueToSet);
+    Notify.success(`${currentFilm.title} added to QUEUE!`);
   } catch (error) {
     console.error('Set state error: ', error.message);
   }

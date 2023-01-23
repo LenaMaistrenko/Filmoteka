@@ -5,12 +5,9 @@ export const cardsList = document.querySelector('.cards__list');
 let TOTAL_PAGES = 0;
 let page = 1;
 
-if (window.location.pathname === '/index.html') {
+if (window.location.pathname !== '/library.html') {
   loadPopular();
 }
-
-
-
 
 let GENRES = [];
 
