@@ -21,18 +21,21 @@ async function createTrailer(event) {
       `https://api.themoviedb.org/3/movie/${id}/videos?api_key=daf1fe8995a61d2fecc007eaa464ca98`
     );
     modalCardInfo.innerHTML = '';
+    let key = '';
     createMovieTrailer(data);
 
     function createMovieTrailer(obj) {
       const { results } = obj;
+      results.forEach(res => {
+        if (res.name.includes('Official')) {
+          return (key = res.key);
+        }
+      });
 
       modalCardInfo.innerHTML = `
-          <h2 class="modal-filmoteka__title title">
-            Watch trailer  
-          </h2>
          <iframe
           class="trailer__video"
-           src="${YOUTUBE}${results[0].key}"
+           src="${YOUTUBE}${key}"
           title="YouTube player"
           frameborder="0"
           allow="acc"
@@ -43,3 +46,7 @@ async function createTrailer(event) {
     }
   }
 }
+
+// <h2 class="modal-filmoteka__title title">
+//   Watch trailer
+// </h2>
