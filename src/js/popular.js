@@ -4,9 +4,13 @@ import { pagination } from './pagination.js';
 export const cardsList = document.querySelector('.cards__list');
 let TOTAL_PAGES = 0;
 let page = 1;
+
 if (window.location.pathname === '/index.html') {
   loadPopular();
 }
+
+
+
 
 let GENRES = [];
 
@@ -45,7 +49,6 @@ export function renderMarkup(movies) {
 async function loadPopular() {
   try {
     const { results, page, total_pages } = await getPopular();
-    console.log(' data, pages, total_pages', results, page, total_pages);
     GENRES = await getGenres();
     renderMarkup(results);
     pagination(1, total_pages);

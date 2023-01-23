@@ -1,15 +1,12 @@
 import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
-
 import { renderMarkup } from './popular';
-
 import { pagination } from './pagination.js';
-
 const searchForm = document.querySelector('.form');
 const searchInput = document.querySelector('#search');
 const notification = document.querySelector('.notification');
-
+export let searched = '';
 searchInput.addEventListener('keyup', event => {
   notification.classList.add('close');
 });
@@ -23,14 +20,15 @@ async function searchFilm(event) {
   const {
     elements: { search },
   } = event.currentTarget;
-  console.log(search.value);
+  searched = search.value;
+  console.log('>>>>>>>>>', searched);
   if (search.value.length < 2) {
     Notify.warning('Its name too short.Enter the correct movie name, please.');
     event.currentTarget.reset();
     return;
   }
   try {
-    const { results, page, total_pages } = await getByName(search.value.trim());
+    const { results, page, total_pages } = await getByName(searched.trim(), 1);
     console.log('results, page, total_pages ', results, page, total_pages);
     const cardsList = document.querySelector('.cards__list');
     if (cardsList) {
@@ -46,9 +44,9 @@ async function searchFilm(event) {
     console.log(error);
   }
 }
-async function getByName(name) {
+export async function getByName(name, page) {
   const { data } = await axios.get(
-    `https://api.themoviedb.org/3/search/movie?api_key=004aa31770cc2729c6dd319813b8b5dc&query=${name}`
+    `https://api.themoviedb.org/3/search/movie?api_key=004aa31770cc2729c6dd319813b8b5dc&query=${name}&page=${page}`
   );
   console.log('getByName', data);
 
