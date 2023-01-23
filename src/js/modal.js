@@ -96,6 +96,7 @@ function createMovieCard(obj) {
           <div class="film-card__picture-container">
               <img class="film-card__picture" src="https://image.tmdb.org/t/p/w300${poster_path}" alt="${title}" data-id="${id}"> 
           </div>
+          <div class="film-card__info-container">
             <h2 class="film-card__title">${title}</h2> 
             <ul class="film-card__info-list">
               <li class="film-card__info-el">
@@ -126,6 +127,7 @@ function createMovieCard(obj) {
             </ul>
             <p class="film-card__overview-title">About</p>
             <p class="film-card__overview">${overview}</p> 
+            </div>
         </div>
        
     `;
