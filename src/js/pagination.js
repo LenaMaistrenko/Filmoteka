@@ -13,31 +13,31 @@ export function pagination(currentPage, allPages) {
   let afterTwoPage = currentPage + 2;
   globalCurrentpage = currentPage;
   if (currentPage > 1) {
-    markup += `<li>&#129144;</li>`;
-    markup += `<li>1</li>`;
+    markup += `<li class="pagination__item arrow-left" >&#129144;</li>`;
+    markup += `<li class="pagination__item">1</li>`;
   }
   if (currentPage > 4) {
-    markup += `<li>...</li>`;
+    markup += `<li  class="pagination__item dotsLeft">...</span>`;
   }
   if (currentPage > 3) {
-    markup += `<li>${beforeTwoPage}</li>`;
+    markup += `<li  class="pagination__item">${beforeTwoPage}</li>`;
   }
   if (currentPage > 2) {
-    markup += `<li>${beforePage}</li>`;
+    markup += `<li  class="pagination__item">${beforePage}</li>`;
   }
-  markup += `<li><b>${currentPage}</b></li>`;
+  markup += `<li class="pagination__item pagination__item--active">${currentPage}</li>`;
   if (allPages - 1 > currentPage) {
-    markup += `<li>${afterPage}</li>`;
+    markup += `<li  class="pagination__item">${afterPage}</li>`;
   }
   if (allPages - 2 > currentPage) {
-    markup += `<li>${afterTwoPage}</li>`;
+    markup += `<li class="pagination__item">${afterTwoPage}</li>`;
   }
   if (allPages - 3 > currentPage) {
-    markup += `<li>...</li>`;
+    markup += `<li  class="pagination__item dotsRight">...</li>`;
   }
   if (allPages > currentPage) {
-    markup += `<li>${allPages}</li>`;
-    markup += `<li class='last_page'>&#129146;<li>`;
+    markup += `<li  class="pagination__item">${allPages}</li>`;
+    markup += `<li  class="pagination__item arrow-right">&#129146;</li>`;
   }
 
   paginationBox.innerHTML = markup;
