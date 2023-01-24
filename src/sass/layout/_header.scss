@@ -128,6 +128,10 @@ background-image: linear-gradient(to right,
   border: none;
   border-bottom: solid 1px #f2f2f2;
   
+  &:hover,
+  &:focus {
+    border-bottom: solid 1px #ff001b;
+  }
 }
 
 .form__btn {

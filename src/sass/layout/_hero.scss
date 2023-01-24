@@ -35,10 +35,16 @@
 }
 
 .cards__item {
+  transition-property: transform;
+  transition-duration: 250ms;
   @media screen and (max-width: 767px) {
     &:not(:last-child) {
       margin-bottom: 20px;
     }
+  }
+
+  &:hover {
+    transform: scale(1.03);
   }
 }
 
