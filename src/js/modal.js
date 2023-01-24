@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.min.css';
+import { VideoTrailer } from './trailer';
 
 const cardsList = document.querySelector('.cards__list');
 
@@ -16,6 +17,8 @@ const btnQueue = document.querySelector('.modal-film__btn-queue');
 const libraryWatched = JSON.parse(localStorage.getItem('watched')) || [];
 const libraryQueue = JSON.parse(localStorage.getItem('queue')) || [];
 
+const videoTrailer = new VideoTrailer();
+
 cardsList.addEventListener('click', onOpenModal);
 
 btnWatched.addEventListener('click', setToLocalStorageWatched);
@@ -27,6 +30,7 @@ async function onOpenModal(event) {
   if (!event.target.closest('[data-id]')) {
     return;
   }
+
   modalBackdrop.classList.add('is-hidden');
   modalCardInfo.innerHTML = '';
   clearBackdropListeners();
@@ -35,6 +39,12 @@ async function onOpenModal(event) {
   const movieRes = await addMovieInfo(currentCardId);
   createMovieCard(movieRes);
 
+  setTimeout(() => {
+    videoTrailer.rootSelector = modalBackdrop.querySelector('iframe');
+  })
+  console.log(videoTrailer)
+  
+  
   modalBackdrop.classList.remove('is-hidden');
   window.addEventListener('click', closeModalbyBackdrop);
   window.addEventListener('keydown', onKeyClick);
@@ -49,6 +59,9 @@ async function addMovieInfo(id) {
 }
 
 function closeModalbyCross() {
+  const modalCardInfo = document.querySelector('.modal__trailer');
+  modalCardInfo.innerHTML = "";
+  // videoTrailer.stop();
   modalBackdrop.classList.add('is-hidden');
   modalCardInfo.innerHTML = '';
   clearBackdropListeners();
@@ -65,6 +78,7 @@ function onKeyClick(event) {
 
 function closeModalbyBackdrop(event) {
   if (event.target === modalBackdrop) {
+    videoTrailer.stop();
     modalBackdrop.classList.add('is-hidden');
     modalCardInfo.innerHTML = '';
     clearBackdropListeners();
