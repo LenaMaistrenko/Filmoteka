@@ -61,7 +61,9 @@ function renderMarkupLibrary(movies) {
           <h3 class="cards__title">${movie.title}</h3>
           <p class="cards__info">${getGenresNameLibrary(movie.genres).join(
             ', '
-          )} | ${movie.release_date.split('-')[0]}</p>
+          )} | ${
+        movie.release_date.split('-')[0]
+      } <span class="cards__vote"> ${movie.vote_average.toFixed(1)}</span></p>
         </li>`;
     })
     .join('');
