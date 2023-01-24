@@ -1,9 +1,9 @@
 'use strict';
 import axios from 'axios';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.min.css';
-import { cardsList } from './popular';
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import Pagination from 'tui-pagination';
+// import 'tui-pagination/dist/tui-pagination.min.css';
+const cardsList = document.querySelector('.cards__list');
 
 const YOUTUBE = 'http://www.youtube.com/embed/';
 

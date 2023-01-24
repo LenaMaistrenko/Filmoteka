@@ -1,11 +1,10 @@
 import axios from 'axios';
 import { pagination } from './pagination.js';
-
 export const cardsList = document.querySelector('.cards__list');
 let TOTAL_PAGES = 0;
 let page = 1;
 
-if (window.location.pathname !== '/library.html') {
+if (window.location.pathname !== "/library.html") {
   loadPopular();
 }
 
