@@ -35,10 +35,16 @@
 }
 
 .cards__item {
+  transition-property: transform;
+  transition-duration: 250ms;
   @media screen and (max-width: 767px) {
     &:not(:last-child) {
       margin-bottom: 20px;
     }
+  }
+
+  &:hover {
+    transform: scale(1.03);
   }
 }
 
@@ -86,4 +92,11 @@
 .no-movies {
   text-align: center;
   font-size: 20px;
+}
+
+.cards__vote {
+  padding: 1px 9px;
+  background-color: #ff6b01;
+  border-radius: 5px;
+  color: #ffffff;
 }
