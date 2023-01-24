@@ -43,7 +43,8 @@ async function onOpenModal(event) {
     videoTrailer.rootSelector = modalBackdrop.querySelector('iframe');
   })
   console.log(videoTrailer)
-
+  
+  
   modalBackdrop.classList.remove('is-hidden');
   window.addEventListener('click', closeModalbyBackdrop);
   window.addEventListener('keydown', onKeyClick);
@@ -58,7 +59,9 @@ async function addMovieInfo(id) {
 }
 
 function closeModalbyCross() {
-  videoTrailer.stop();
+  const modalCardInfo = document.querySelector('.modal__trailer');
+  modalCardInfo.innerHTML = "";
+  // videoTrailer.stop();
   modalBackdrop.classList.add('is-hidden');
   modalCardInfo.innerHTML = '';
   clearBackdropListeners();
