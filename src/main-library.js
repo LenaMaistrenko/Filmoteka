@@ -3,4 +3,4 @@ import './js/modal-footer.js';
 import './js/library.js';
 import './js/trailer.js';
 import './js/pagination.js';
->>>>>>>>> Temporary merge branch 2
+import './js/sroll-up.js';
