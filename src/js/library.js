@@ -8,7 +8,7 @@ import { Loading } from 'notiflix/build/notiflix-loading-aio';
 const cardsList = document.querySelector('.cards__list');
 const watchedBtn = document.querySelector('.filter-watched__btn');
 const queueBtn = document.querySelector('.filter-queue__btn');
-const noMovies = document.querySelector('.no-movies');
+// const noMovies = document.querySelector('.no-movies');
 
 watchedBtn.addEventListener('click', renderWatched);
 queueBtn.addEventListener('click', renderQueue);
@@ -20,32 +20,32 @@ if (window.location.pathname === '/library.html') {
 }
 
 function renderWatched() {
-  noMovies.classList.add('is-hidden');
+  // noMovies.classList.add('is-hidden');
   Loading.standard();
   Loading.remove(800);
   cardsList.innerHTML = '';
   const watchedMovies = JSON.parse(localStorage.getItem('watched')) || [];
   if (!watchedMovies.length) {
-    return renderNoMovies();
+    return Notify.info('No added movies!');
   }
   renderMarkupLibrary(watchedMovies);
 }
 
 function renderQueue() {
-  noMovies.classList.add('is-hidden');
+  // noMovies.classList.add('is-hidden');
   Loading.standard();
   Loading.remove(800);
   cardsList.innerHTML = '';
   const queueMovies = JSON.parse(localStorage.getItem('queue')) || [];
   if (!queueMovies.length) {
-    return renderNoMovies();
+    return Notify.info('No added movies!');
   }
   renderMarkupLibrary(queueMovies);
 }
 
-function renderNoMovies() {
-  noMovies.classList.remove('is-hidden');
-}
+// function renderNoMovies() {
+//   noMovies.classList.remove('is-hidden');
+// }
 
 function renderMarkupLibrary(movies) {
   const markup = movies
