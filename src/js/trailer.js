@@ -50,10 +50,22 @@ async function createTrailer(event) {
 // <h2 class="modal-filmoteka__title title">
 //   Watch trailer
 // </h2>
+export class VideoTrailer {
+  constructor() {
+    this.rootSelector = null;
+  }
+
+  stop() {
+    console.dir(this.rootSelector);
+    this.rootSelector.contentWindow.close();
+  }
+}
 export const stopVideo = () => { 
   const iframe = modalCardInfo.querySelector(".trailer__video");
   
-  iframe.contentWindow.close();
-  console.dir(iframe.contentWindow)
+  
+  iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', 
+  func: 'stopVideo' }), '*') 
+    
 }
 
