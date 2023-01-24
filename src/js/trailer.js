@@ -56,7 +56,7 @@ export class VideoTrailer {
   }
 
   stop() {
-    console.dir(this.rootSelector);
+    
     this.rootSelector.contentWindow.close();
   }
 }

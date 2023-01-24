@@ -63,7 +63,7 @@ export function pagination(currentPage, allPages) {
 }
 paginationBox.addEventListener('click', handlerPagination);
 function handlerPagination(evt) {
-  console.log('searched', 'globalCurrentpage', searched, globalCurrentpage);
+ 
   if (!searched) {
     if (evt.target.nodeName !== 'LI') {
       return;
@@ -91,7 +91,7 @@ function handlerPagination(evt) {
     }
     //
     const page = evt.target.textContent;
-    console.log(page);
+   
     getPopular(page).then(({ results, page, total_pages }) => {
       renderMarkup(results);
       pagination(page, total_pages);
@@ -113,7 +113,7 @@ function handlerPagination(evt) {
       return;
     }
     if (evt.target.textContent === '🡺') {
-      console.log();
+      
       getByName(searched, (globalCurrentpage += 1)).then(
         ({ results, page, total_pages }) => {
           renderMarkup(results);
@@ -124,7 +124,7 @@ function handlerPagination(evt) {
     }
 
     const page = evt.target.textContent;
-    console.log(page);
+    
     getByName(searched, page).then(({ results, page, total_pages }) => {
       renderMarkup(results);
       pagination(page, total_pages);

@@ -42,7 +42,7 @@ async function onOpenModal(event) {
   setTimeout(() => {
     videoTrailer.rootSelector = modalBackdrop.querySelector('iframe');
   })
-  console.log(videoTrailer)
+ 
   
   
   modalBackdrop.classList.remove('is-hidden');
@@ -169,7 +169,7 @@ async function setToLocalStorageWatched(evt) {
   } catch (error) {
     console.error('Set state error: ', error.message);
   }
-  console.log(JSON.parse(localStorage.getItem('watched')));
+ 
 }
 
 async function setToLocalStorageQueue(evt) {
@@ -192,5 +192,5 @@ async function setToLocalStorageQueue(evt) {
     console.error('Set state error: ', error.message);
   }
   const queue = JSON.parse(localStorage.getItem('queue'));
-  console.log(queue);
+ 
 }
