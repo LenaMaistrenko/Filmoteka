@@ -1,8 +1,7 @@
 'use strict';
 import axios from 'axios';
-// import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// import Pagination from 'tui-pagination';
-// import 'tui-pagination/dist/tui-pagination.min.css';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 const cardsList = document.querySelector('.cards__list');
 
 const YOUTUBE = 'http://www.youtube.com/embed/';
@@ -12,7 +11,7 @@ const modalCardInfo = document.querySelector('.modal__trailer');
 
 //function by click on image
 async function createTrailer(event) {
-  currentId = event.target.parentNode.dataset.id; // const id of film
+  const currentId = event.target.parentNode.dataset.id; // const id of film
 
   addMovieInfo(currentId);
   // //Find all info about film, get object
