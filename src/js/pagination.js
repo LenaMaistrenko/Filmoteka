@@ -16,49 +16,49 @@ export function pagination(currentPage, allPages) {
     markup += `<li class="pagination__item arrow-left" >&#129144;</li>`;
     markup += `<li class="pagination__item">1</li>`;
   }
-  if (window.innerWidth >=768) {
+  if (window.innerWidth >= 768) {
     if (currentPage > 4) {
-    markup += `<li  class="pagination__item dotsLeft">...</span>`;
+      markup += `<li  class="pagination__item dotsLeft">...</span>`;
+    }
+    if (currentPage > 3) {
+      markup += `<li  class="pagination__item">${beforeTwoPage}</li>`;
+    }
+    if (currentPage > 2) {
+      markup += `<li  class="pagination__item">${beforePage}</li>`;
+    }
+    markup += `<li class="pagination__item pagination__item--active">${currentPage}</li>`;
+    if (allPages - 1 > currentPage) {
+      markup += `<li  class="pagination__item">${afterPage}</li>`;
+    }
+    if (allPages - 2 > currentPage) {
+      markup += `<li class="pagination__item">${afterTwoPage}</li>`;
+    }
+    if (allPages - 3 > currentPage) {
+      markup += `<li  class="pagination__item dotsRight">...</li>`;
+    }
+    if (allPages > currentPage) {
+      markup += `<li  class="pagination__item">${allPages}</li>`;
+      markup += `<li  class="pagination__item arrow-right">&#129146;</li>`;
+    }
+  } else {
+    if (currentPage > 3) {
+      markup += `<li  class="pagination__item">${beforeTwoPage}</li>`;
+    }
+    if (currentPage > 2) {
+      markup += `<li  class="pagination__item">${beforePage}</li>`;
+    }
+    markup += `<li class="pagination__item pagination__item--active">${currentPage}</li>`;
+    if (allPages - 1 > currentPage) {
+      markup += `<li  class="pagination__item">${afterPage}</li>`;
+    }
+    if (allPages - 2 > currentPage) {
+      markup += `<li class="pagination__item">${afterTwoPage}</li>`;
+    }
+    if (allPages > currentPage) {
+      markup += `<li  class="pagination__item">${allPages}</li>`;
+      markup += `<li  class="pagination__item arrow-right">&#129146;</li>`;
+    }
   }
-  if (currentPage > 3) {
-    markup += `<li  class="pagination__item">${beforeTwoPage}</li>`;
-  }
-  if (currentPage > 2) {
-    markup += `<li  class="pagination__item">${beforePage}</li>`;
-  }
-  markup += `<li class="pagination__item pagination__item--active">${currentPage}</li>`;
-  if (allPages - 1 > currentPage) {
-    markup += `<li  class="pagination__item">${afterPage}</li>`;
-  }
-  if (allPages - 2 > currentPage) {
-    markup += `<li class="pagination__item">${afterTwoPage}</li>`;
-  }
-  if (allPages - 3 > currentPage) {
-    markup += `<li  class="pagination__item dotsRight">...</li>`;
-  }
-  if (allPages > currentPage) {
-    markup += `<li  class="pagination__item">${allPages}</li>`;
-    markup += `<li  class="pagination__item arrow-right">&#129146;</li>`;
-  }}
- else {
-  if (currentPage > 3) {
-    markup += `<li  class="pagination__item">${beforeTwoPage}</li>`;
-  }
-  if (currentPage > 2) {
-    markup += `<li  class="pagination__item">${beforePage}</li>`;
-  }
-  markup += `<li class="pagination__item pagination__item--active">${currentPage}</li>`;
-  if (allPages - 1 > currentPage) {
-    markup += `<li  class="pagination__item">${afterPage}</li>`;
-  }
-  if (allPages - 2 > currentPage) {
-    markup += `<li class="pagination__item">${afterTwoPage}</li>`;
-  }
-  if (allPages > currentPage) {
-    markup += `<li  class="pagination__item">${allPages}</li>`;
-    markup += `<li  class="pagination__item arrow-right">&#129146;</li>`;
-  }
- }
   paginationBox.innerHTML = markup;
 }
 paginationBox.addEventListener('click', handlerPagination);
@@ -107,7 +107,7 @@ function handlerPagination(evt) {
       getByName(searched, (globalCurrentpage -= 1)).then(
         ({ results, page, total_pages }) => {
           renderMarkup(results);
-          pagination((globalCurrentpage -= 1), total_pages);
+          pagination(page, total_pages);
         }
       );
       return;
@@ -131,4 +131,3 @@ function handlerPagination(evt) {
     });
   }
 }
-
