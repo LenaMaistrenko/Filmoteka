@@ -12,7 +12,7 @@ const noMovies = document.querySelector('.no-movies');
 
 watchedBtn.addEventListener('click', renderWatched);
 queueBtn.addEventListener('click', renderQueue);
-noMovies.classList.add('is-hidden');
+// noMovies.classList.add('is-hidden');
 
 if (window.location.pathname === '/library.html') {
   watchedBtn.focus();
@@ -20,6 +20,7 @@ if (window.location.pathname === '/library.html') {
 }
 
 function renderWatched() {
+  noMovies.classList.add('is-hidden');
   Loading.standard();
   Loading.remove(800);
   cardsList.innerHTML = '';
@@ -31,6 +32,7 @@ function renderWatched() {
 }
 
 function renderQueue() {
+  noMovies.classList.add('is-hidden');
   Loading.standard();
   Loading.remove(800);
   cardsList.innerHTML = '';
