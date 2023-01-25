@@ -13,7 +13,7 @@ export function pagination(currentPage, allPages) {
   let afterTwoPage = currentPage + 2;
   globalCurrentpage = currentPage;
   if (currentPage > 1) {
-    markup += `<li class="pagination__item arrow-left" >&#10094;</li>`;
+    markup += `<li class="pagination__item arrow-left" >&#129144;</li>`;
     markup += `<li class="pagination__item">1</li>`;
   }
   if (window.innerWidth >= 768) {
@@ -38,7 +38,7 @@ export function pagination(currentPage, allPages) {
     }
     if (allPages > currentPage) {
       markup += `<li  class="pagination__item">${allPages}</li>`;
-      markup += `<li  class="pagination__item arrow-right">&#10095;</li>`;
+      markup += `<li  class="pagination__item arrow-right">&#129146;</li>`;
     }
   } else {
     if (currentPage > 3) {
@@ -56,7 +56,7 @@ export function pagination(currentPage, allPages) {
     }
     if (allPages > currentPage) {
       markup += `<li  class="pagination__item">${allPages}</li>`;
-      markup += `<li  class="pagination__item arrow-right">&#10095;</li>`;
+      markup += `<li  class="pagination__item arrow-right">&#129146;</li>`;
     }
   }
   paginationBox.innerHTML = markup;
