@@ -101,19 +101,19 @@
 
 .cards__vote {
   padding: 1px 9px;
-  background-color: #ff6b01;
+  background-color: var(--color-accent);
   border-radius: 5px;
-  color: #ffffff;
+  color: var(--header-text-color);
 }
 
 .cards__remove-item {
   position: absolute;
   width: 30px;
   height: 30px;
-  background-color: #ff6b08;
+  background-color: var(--color-text-accent);
   border-radius: 50%;
   border: none;
-  color: #ffffff;
+  color: var(--header-text-color);
   top: 15px;
   right: 15px;
   font-size: 20px;
@@ -123,7 +123,7 @@
 
   &:hover,
   &:focus {
-    background-color: #545454;
+    background-color: var(--footer-text-color);
     transform: scale(1.08);
   }
 }
