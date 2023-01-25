@@ -4,7 +4,7 @@ export const cardsList = document.querySelector('.cards__list');
 let TOTAL_PAGES = 0;
 let page = 1;
 
-if (window.location.pathname !== "/library.html") {
+if (window.location.pathname !== '/library.html') {
   loadPopular();
 }
 
@@ -14,7 +14,7 @@ export async function getPopular(page = 1) {
   const { data } = await axios.get(
     `https://api.themoviedb.org/3/trending/movie/week?api_key=004aa31770cc2729c6dd319813b8b5dc&page=${page}`
   );
-  
+
   return data;
 }
 
@@ -29,7 +29,7 @@ export function renderMarkup(movies) {
             class="cards__photo"
             alt="movie"
             src="https://image.tmdb.org/t/p/w500${movie.poster_path}"
-            width="450"
+            
             loading="lazy"
           />
           <h3 class="cards__title">${movie.title}</h3>
