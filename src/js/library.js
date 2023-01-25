@@ -12,7 +12,7 @@ let currentTab = '';
 watchedBtn.addEventListener('click', renderWatched);
 queueBtn.addEventListener('click', renderQueue);
 
-if (window.location.pathname === '/library.html') {
+if (window.location.pathname === '/library.html' || '/project/library.html') {
   watchedBtn.focus();
   watchedBtn.click();
 }
