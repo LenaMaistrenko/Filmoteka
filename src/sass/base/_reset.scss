@@ -1,5 +1,13 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
+html {
+  height: 100%;
+}
 
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;;
@@ -7,6 +15,9 @@ body {
     letter-spacing: 0.04em;
     color: #0d0d0d;
     background: #FCFCFC;
+  }
+  .content{
+      flex: 1 0 auto;
   }
   .link {
     text-decoration: none;

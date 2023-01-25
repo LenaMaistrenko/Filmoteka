@@ -12,6 +12,7 @@ export function pagination(currentPage, allPages) {
   let afterPage = currentPage + 1;
   let afterTwoPage = currentPage + 2;
   globalCurrentpage = currentPage;
+  console.log('currentPage,allPage', currentPage, allPages);
   if (currentPage > 1) {
     markup += `<li class="pagination__item arrow-left" >&#129144;</li>`;
     markup += `<li class="pagination__item">1</li>`;
@@ -59,7 +60,15 @@ export function pagination(currentPage, allPages) {
       markup += `<li  class="pagination__item arrow-right">&#129146;</li>`;
     }
   }
+  if (!allPages) {
+    markup = '';
+  }
   paginationBox.innerHTML = markup;
+  // window.scrollTo(0, 0);
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
 }
 paginationBox.addEventListener('click', handlerPagination);
 function handlerPagination(evt) {
