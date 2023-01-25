@@ -4,7 +4,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const cardsList = document.querySelector('.cards__list');
 
-const YOUTUBE = 'http://www.youtube.com/embed/';
+const YOUTUBE = 'https://www.youtube.com/embed/';
 
 cardsList.addEventListener('click', createTrailer);
 const modalCardInfo = document.querySelector('.modal__trailer');
