@@ -62,7 +62,7 @@
   padding: 48px 20px 40px 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  // justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
   transform: scale(0);
@@ -74,6 +74,7 @@
     max-width: 550px;
     top: 50%;
     left: 50%;
+    height: 96vh;
     transform: translate(-50%, -50%) scale(1);
   }
   @media screen and (min-width: 400px) {
@@ -89,6 +90,7 @@
   @include desktop {
     max-width: 806px;
     min-height: 558px;
+    height: 100%;
     padding: 40px 12px;
   }
 }
@@ -360,5 +362,3 @@
     height: 356px;
   }
 }
-
-
