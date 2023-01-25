@@ -30,6 +30,9 @@ async function onOpenModal(event) {
     return;
   }
 
+  if (event.target.nodeName === 'BUTTON') {
+    return;
+  }
   modalBackdrop.classList.add('is-hidden');
   modalCardInfo.innerHTML = '';
   clearBackdropListeners();
@@ -40,10 +43,8 @@ async function onOpenModal(event) {
 
   setTimeout(() => {
     videoTrailer.rootSelector = modalBackdrop.querySelector('iframe');
-  })
- 
-  
-  
+  });
+
   modalBackdrop.classList.remove('is-hidden');
   window.addEventListener('click', closeModalbyBackdrop);
   window.addEventListener('keydown', onKeyClick);
@@ -59,7 +60,7 @@ async function addMovieInfo(id) {
 
 function closeModalbyCross() {
   const modalCardInfo = document.querySelector('.modal__trailer');
-  modalCardInfo.innerHTML = "";
+  modalCardInfo.innerHTML = '';
   // videoTrailer.stop();
   modalBackdrop.classList.add('is-hidden');
   modalCardInfo.innerHTML = '';
@@ -168,7 +169,6 @@ async function setToLocalStorageWatched(evt) {
   } catch (error) {
     console.error('Set state error: ', error.message);
   }
- 
 }
 
 async function setToLocalStorageQueue(evt) {
@@ -191,5 +191,4 @@ async function setToLocalStorageQueue(evt) {
     console.error('Set state error: ', error.message);
   }
   const queue = JSON.parse(localStorage.getItem('queue'));
- 
 }
