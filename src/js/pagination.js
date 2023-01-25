@@ -56,7 +56,7 @@ export function pagination(currentPage, allPages) {
     }
     if (allPages > currentPage) {
       markup += `<li  class="pagination__item">${allPages}</li>`;
-      markup += `<li  class="pagination__item arrow-right">&#129146;</li>`;
+      markup += `<li  class="pagination__item arrow-right">&#10095;</li>`;
     }
   }
   paginationBox.innerHTML = markup;
