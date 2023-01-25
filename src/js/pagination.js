@@ -13,7 +13,7 @@ export function pagination(currentPage, allPages) {
   let afterTwoPage = currentPage + 2;
   globalCurrentpage = currentPage;
   if (currentPage > 1) {
-    markup += `<li class="pagination__item arrow-left" >&#129144;</li>`;
+    markup += `<li class="pagination__item arrow-left" >&#10094;</li>`;
     markup += `<li class="pagination__item">1</li>`;
   }
   if (window.innerWidth >= 768) {
@@ -38,7 +38,7 @@ export function pagination(currentPage, allPages) {
     }
     if (allPages > currentPage) {
       markup += `<li  class="pagination__item">${allPages}</li>`;
-      markup += `<li  class="pagination__item arrow-right">&#129146;</li>`;
+      markup += `<li  class="pagination__item arrow-right">&#10095;</li>`;
     }
   } else {
     if (currentPage > 3) {
@@ -63,7 +63,6 @@ export function pagination(currentPage, allPages) {
 }
 paginationBox.addEventListener('click', handlerPagination);
 function handlerPagination(evt) {
- 
   if (!searched) {
     if (evt.target.nodeName !== 'LI') {
       return;
@@ -91,7 +90,7 @@ function handlerPagination(evt) {
     }
     //
     const page = evt.target.textContent;
-   
+
     getPopular(page).then(({ results, page, total_pages }) => {
       renderMarkup(results);
       pagination(page, total_pages);
@@ -113,7 +112,6 @@ function handlerPagination(evt) {
       return;
     }
     if (evt.target.textContent === '🡺') {
-      
       getByName(searched, (globalCurrentpage += 1)).then(
         ({ results, page, total_pages }) => {
           renderMarkup(results);
@@ -124,7 +122,7 @@ function handlerPagination(evt) {
     }
 
     const page = evt.target.textContent;
-    
+
     getByName(searched, page).then(({ results, page, total_pages }) => {
       renderMarkup(results);
       pagination(page, total_pages);
