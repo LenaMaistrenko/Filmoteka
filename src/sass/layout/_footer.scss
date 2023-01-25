@@ -1,5 +1,9 @@
+footer {
+    flex: 0 0 auto;
+}
 .cellar{
     display: flex;
+    flex-shrink: 0;
     height: 100px;
     flex-wrap: wrap;
     
