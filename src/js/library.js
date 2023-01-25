@@ -67,8 +67,10 @@ function renderMarkupLibrary(movies) {
     })
     .join('');
   cardsList.insertAdjacentHTML('beforeend', markup);
-  const cardsRemoveItem = document.querySelector('.cards__remove-item');
-  cardsRemoveItem.addEventListener('click', onBtn);
+  const cardsRemoveItem = document.querySelectorAll('.cards__remove-item');
+  cardsRemoveItem.forEach(btn => {
+    btn.addEventListener('click', onBtn);
+  });
 }
 
 function onBtn(e) {
