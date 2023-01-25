@@ -58,7 +58,7 @@
 .modal-film__card {
   position: relative;
   min-width: 280px;
-  min-height: 600px;
+  height: 96vh;
   padding: 48px 20px 40px 20px;
   display: flex;
   flex-direction: column;
@@ -346,6 +346,7 @@
 }
 
 .trailer__video {
+  width: 100%;
   margin: auto;
   max-width: 350px;
   height: 222px;
